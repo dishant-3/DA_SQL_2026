@@ -164,3 +164,17 @@ SELECT MIN(id) as id,CONCAT(name,email,CAST(contact_no AS VARCHAR)) As key_col
 FROM cust1
 GROUP BY CONCAT(name,email,CAST(contact_no AS VARCHAR))
 )AS t1);
+
+--- We generally need a column to make distinct records and remove duplicates
+DELETE cust1
+FROM cust1
+JOIN (
+    SELECT id, name, email, contact_no, load_date,
+           ROW_NUMBER() OVER (
+               PARTITION BY id, name, email, contact_no 
+               ORDER BY load_date ASC
+           ) as rn
+    FROM cust1
+) AS temp ON cust1.id = temp.id 
+          AND cust1.load_date = temp.load_date
+WHERE temp.rn > 1;
