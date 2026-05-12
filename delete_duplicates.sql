@@ -1,19 +1,19 @@
 use sample1;
 
---CREATE TABLE cust1 (
+-- CREATE TABLE cust1 (
 --    id INT,
 --    name VARCHAR(15),
 --    email VARCHAR(40),
 --    contact_no INT
---);
----- Insert values into cust1
---INSERT INTO cust1 (id, name, email, contact_no)
---VALUES
---(1, 'Harry', 'har@gmail.com', 889900),
---(1, 'Harry', 'har@gmail.com', 889900),
---(2, 'Ben', 'ben@gmail.com', 112233),
---(3, 'Barry', 'bar@gmail.com', 778899),
---(3, 'Barry', 'bar@gmail.com', 778899);
+-- );
+-- -- Insert values into cust1
+-- INSERT INTO cust1 (id, name, email, contact_no)
+-- VALUES
+-- (1, 'Harry', 'har@gmail.com', 889900),
+-- (1, 'Harry', 'har@gmail.com', 889900),
+-- (2, 'Ben', 'ben@gmail.com', 112233),
+-- (3, 'Barry', 'bar@gmail.com', 778899),
+-- (3, 'Barry', 'bar@gmail.com', 778899);
 
 -- Scenario 1: When you do not have any column with unique values
 -- Approach 1 : Create a backup table and then truncate cust1 table. Use DISTINCT to insert non-duplicate records into cust1 table
@@ -82,6 +82,7 @@ INNER JOIN CTE
  AND cust1.email = CTE.email
  AND cust1.contact_no = CTE.contact_no
 WHERE CTE.row_num > 1;
+
 
 -- Scenario 2 : When we have unique id for each record
 
